@@ -42,6 +42,43 @@ function deletegroup(){
         fi
         sleep 2
 }
+
+function Useradd
+kdialog --inputbox username=echo$(" Wer wird Hinzugefügt")
+kdialog --inputbox -d=echo$("Wo soll der User Gespeichert werden")
+    echo "Sind sie Sicher das sie den User hinzufügen wollen"
+until [ $yesno == 0 ]
+	do
+              yesno=$(kdialog --yesno "Sind sie sich sicher, dass Sie den Benutzer $username in $speicherort speichernwollen?")
+        done
+        su -c whoami $username
+        if [ $? -eq 0 ]; then
+                echo "Ein User namens $username exisitiert bereits auf diesem System."
+        else
+                cd $speicherort
+                useradd $username
+        fi
+}
+function Useradd
+kdialog --inputbox username=echo$(" Wer wird Hinzugefügt")
+kdialog --inputbox -d=echo$("Wo soll der User Gespeichert werden")
+    echo "Sind sie Sicher das sie den User hinzufügen wollen"
+until [ $yesno == 0 ]
+	do
+              yesno=$(kdialog --yesno "Sind sie sich sicher, dass Sie den Benutzer $username in $speicherort speichernwollen?")
+        done
+        su -c whoami $username
+        if [ $? -eq 0 ]; then
+                echo "Ein User namens $username exisitiert bereits auf diesem System."
+        else
+                cd $speicherort
+                useradd $username
+        fi
+}
+
+
+
+ 
  
 exit 0
 

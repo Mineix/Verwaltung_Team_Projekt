@@ -25,7 +25,30 @@ yesno-dialog who2del
                 $1
                 read -p "| (0: nein | 1: ja) " YESNO
         done
-}
+
+
+# Code für Delete_User von Kevin Köhn
+
+function deluser(){
+  echo -n "| Geben Sie den User ein: "
+  read USER
+  if [[ `grep ^${USER}: /etc/passwd ` ]]; then
+    echo "|  dieser User existiert!"
+    echo -n "|  Wollen Sie das Heimatverzeichnis auch Löschen? [J/n]"
+    read OK
+    if (( "$OK" == "n" )) || (( "$OK" == "N" )); then
+      echo "userdel $USER"
+    else
+      echo "userdel -r $USER"
+    fi
+  else 
+    echo "| dieser User existiert nicht!"
+    echo "| Das Programm wird beendet!" 
+    exit 3
+  fi
+  exit 0
+
+
 
 
 function deletegroup(){
@@ -41,7 +64,7 @@ function deletegroup(){
                 echo "| ${WHAT2DEL} wurde gelöscht!"
         fi
         sleep 2
-}
+}}}
  
 exit 0
 
